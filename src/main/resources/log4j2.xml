@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" name="logger" packages="">
+  <Properties>
+    <Property name="basePath">./target/logs/</Property>
+  </Properties>
+  <Appenders>
+    <Console name="console" target="SYSTEM_OUT">
+      <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
+    </Console>
+    <File name="file-logging" fileName="${basePath}testlogging.log">
+      <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
+    </File>
+  </Appenders>
+  <Loggers>
+    <Root level="info" additivity="false">
+      <AppenderRef ref="console"/>
+      <AppenderRef ref="file-logging"/>
+    </Root>
+  </Loggers>
+</Configuration>
