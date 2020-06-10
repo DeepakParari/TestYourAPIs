@@ -1,0 +1,18 @@
+{
+  "id": 24,
+  "category": {
+    "id": 1,
+    "name": "Rabbit"
+  },
+  "name": "Bunny",
+  "photoUrls": [
+    ""
+  ],
+  "tags": [
+    {
+      "id": 1,
+      "name": "White"
+    }
+  ],
+  "status": "available"
+}
