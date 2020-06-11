@@ -26,7 +26,7 @@ public class SpecBuilder {
         try {
 
             RequestSpecBuilder builder = new RequestSpecBuilder();
-            PrintStream log = new PrintStream(new FileOutputStream("target/request-responces.txt"));
+            PrintStream log = new PrintStream(new FileOutputStream("target/request-response.txt"));
             builder.addHeader("Content-Type", "application/json");
             builder.setBaseUri(getConfiguration().getProperty("BASE_URI"));
             builder.addFilter(RequestLoggingFilter.logRequestTo(log));

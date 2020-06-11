@@ -1,4 +1,5 @@
 {
+  "id": 24,
   "category": {
     "id": 1,
     "name": "Rabbit"
@@ -11,7 +12,11 @@
     {
       "id": 1,
       "name": "White"
+    },
+    {
+      "id": 2,
+      "name": "Cute"
     }
   ],
-  "status": "available"
+  "status": "sold"
 }

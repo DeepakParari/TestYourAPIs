@@ -7,4 +7,6 @@ public class RequestPaths {
      */
     public static final String PET = "/pet/";
     public static final String STORE = "/store/";
+
+
 }

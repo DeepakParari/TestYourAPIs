@@ -23,6 +23,26 @@
         <log4j-slf4j.version>2.9.0</log4j-slf4j.version>
         <json-smart.version>2.3</json-smart.version>
     </properties>
+    <profiles>
+        <!-- Set profiles for test execution environment. Development profile is default -->
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <skip.tests>false</skip.tests>
+                <env>dev</env>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <skip.tests>true</skip.tests>
+                <env>test</env>
+            </properties>
+        </profile>
+    </profiles>
     <dependencies>
         <dependency>
             <groupId>io.rest-assured</groupId>
@@ -89,6 +109,18 @@
         </dependency>
     </dependencies>
     <build>
+        <!-- inject env properties from profile into config.properties -->
+        <filters>
+            <!--suppress UnresolvedMavenProperty -->
+            <filter>src/main/resources/env/${env}.properties</filter>
+        </filters>
+        <!-- Map ${} into config.resources file. Depending on active profile in mvn command line -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
