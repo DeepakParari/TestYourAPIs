@@ -14,8 +14,8 @@ import static org.hamcrest.Matchers.greaterThan;
 
 
 
-public class UsersTests {
-    private static final Logger LOGGER = LoggerFactory.getLogger(UsersTests.class);
+public class Users {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Users.class);
 
     @Test
     public void verify_If_Users_Exists(){

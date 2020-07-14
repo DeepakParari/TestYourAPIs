@@ -3,7 +3,7 @@ package services;
 import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
-import static my.testyourapi.BaseTest.requestSpec;
+import static tests.BaseTest.requestSpec;
 
 public class UsersService {
 
