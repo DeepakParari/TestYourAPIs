@@ -4,11 +4,12 @@ import helpers.JSONHelper;
 import helpers.RequestLoader;
 import io.restassured.response.Response;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import static io.restassured.RestAssured.given;
-import static my.testyourapi.BaseTest.requestSpec;
+import static tests.BaseTest.requestSpec;
 import static org.apache.http.HttpStatus.SC_OK;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -17,6 +18,7 @@ public class PetTest {
     JSONHelper JSONHelper = new JSONHelper();
     public static String petID;
 
+    @Ignore
     @Test
     public void getPetByID(){
 
@@ -25,6 +27,7 @@ public class PetTest {
                                 .then().statusCode(SC_OK).extract().response();
     }
 
+    @Ignore
     @Test
     public void createPet(){
         Object createPetBody = new RequestLoader().loadJson("/payloads/createNewPet.json");
@@ -36,6 +39,7 @@ public class PetTest {
         petID = JSONHelper.getValueFromJSON(createPetRes,"id");
     }
 
+    @Ignore
     @Test
     public void updatePet(){
         Object updatePetBody = new RequestLoader().loadJson("/payloads/updatePet.json");
@@ -45,6 +49,7 @@ public class PetTest {
                 .then().statusCode(SC_OK);
     }
 
+    @Ignore
     @Test
     public void zdeletePet(){
         Response getPetByIDRes = given().spec(requestSpec)
