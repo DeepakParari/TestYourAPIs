@@ -1,7 +1,11 @@
 package tests;
 
+import com.tngtech.java.junit.dataprovider.DataProvider;
+import com.tngtech.java.junit.dataprovider.DataProviderRunner;
+import com.tngtech.java.junit.dataprovider.UseDataProvider;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pojos.Post;
@@ -13,44 +17,69 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.equalTo;
 
+@RunWith(DataProviderRunner.class)
 public class Posts {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Users.class);
     private int userId;
 
+    @DataProvider
+    public static Object[][] createPost() {
+        return new Object[][]{
+                {"Delphine", "Title", "This is my new post"}
+        };
+    }
+
     @Test
-    public void verify_If_user_is_able_to_create_post() {
+    @UseDataProvider("createPost")
+    public void verify_If_user_is_able_to_create_post(final String userName, final String title, final String body) {
         //Arrange
-        userId = UsersService.getUserIdOfUser("Delphine");
+        userId = UsersService.getUserIdOfUser(userName);
 
         //Act & Assert
         if (userId != 0) {
-            PostsService.createPost("Title", "This is my new post", userId)
+            PostsService.createPost(title, body, userId)
                     .then().assertThat()
-                    .body("title", equalTo("Title"))
-                    .body("body", equalTo("This is my new post"))
+                    .body("title", equalTo(title))
+                    .body("body", equalTo(body))
                     .body("userId", equalTo(userId));
         } else {
             Assert.fail("User does not exist, therefore unable to create post.");
         }
     }
 
-    @Test
-    public void verify_If_user_is_able_to_update_post() {
-        //Arrange
-        userId = UsersService.getUserIdOfUser("Delphine");
-
-        //Act & Assert
-        PostsService.updatePost("Updated Post", "Post updated", userId, 1)
-                .then().assertThat()
-                .body("title", equalTo("Updated Post"))
-                .body("body", equalTo("Post updated"));
+    @DataProvider
+    public static Object[][] updatePost() {
+        return new Object[][]{
+                {"Delphine", "Updated Post", "Post updated"}
+        };
     }
 
     @Test
-    public void verify_If_user_is_able_to_delete_post() {
+    @UseDataProvider("updatePost")
+    public void verify_If_user_is_able_to_update_post(final String userName, final String title, final String body) {
         //Arrange
-        userId = UsersService.getUserIdOfUser("Delphine");
+        userId = UsersService.getUserIdOfUser(userName);
+
+        //Act & Assert
+        PostsService.updatePost(title, body, userId, 1)
+                .then().assertThat()
+                .body("title", equalTo(title))
+                .body("body", equalTo(body));
+    }
+
+    @DataProvider
+    public static Object[][] user() {
+        return new Object[][]{
+                {"Delphine"}
+        };
+    }
+
+    @Test
+    @UseDataProvider("user")
+    public void verify_If_user_is_able_to_delete_post(final String userName) {
+        //Arrange
+        userId = UsersService.getUserIdOfUser(userName);
 
         //Act & Assert
         PostsService.deletePost(1)
@@ -59,9 +88,10 @@ public class Posts {
     }
 
     @Test
-    public void verify_If_user_is_able_to_list_posts_of_a_specific_user() {
+    @UseDataProvider("user")
+    public void verify_If_user_is_able_to_list_posts_of_a_specific_user(final String userName) {
         //Arrange
-        userId = UsersService.getUserIdOfUser("Delphine");
+        userId = UsersService.getUserIdOfUser(userName);
 
         //Act & Assert
         List<Post> allPostsByUser = Arrays.asList(PostsService.getPostsOfUser(userId).getBody().as(Post[].class));

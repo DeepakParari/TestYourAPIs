@@ -1,8 +1,12 @@
 package tests;
 
+import com.tngtech.java.junit.dataprovider.DataProvider;
+import com.tngtech.java.junit.dataprovider.DataProviderRunner;
+import com.tngtech.java.junit.dataprovider.UseDataProvider;
 import io.restassured.response.Response;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pojos.Comment;
@@ -14,6 +18,7 @@ import services.UsersService;
 import java.util.Arrays;
 import java.util.List;
 
+@RunWith(DataProviderRunner.class)
 public class Comments {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Users.class);
@@ -21,11 +26,19 @@ public class Comments {
     private Response allCommentsOnUserPostsResponse;
     private List<Comment> allCommentsOnUserPosts;
 
+    @DataProvider
+    public static Object[][] user() {
+        return new Object[][]{
+                {"Delphine"}
+        };
+    }
+
     @Test
-    public void verify_If_comments_of_an_user_have_valid_email_format() {
+    @UseDataProvider("user")
+    public void verify_If_comments_of_an_user_have_valid_email_format(final String userName) {
 
         //Arrange
-        userId = UsersService.getUserIdOfUser("Delphine");
+        userId = UsersService.getUserIdOfUser(userName);
         List<Post> allPostsByUser = Arrays.asList(PostsService.getPostsOfUser(userId).getBody().as(Post[].class));
         allPostsByUser.forEach(post -> {
             int postId = post.getId();
