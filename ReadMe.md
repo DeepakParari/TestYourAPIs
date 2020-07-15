@@ -1,6 +1,6 @@
 
 
-[![CircleCI](https://circleci.com/gh/DeepakParari/TestYourAPIs..svg?style=shield)](https://app.circleci.com/pipelines/github/DeepakParari/TestYourAPIs)
+[![CircleCI](https://circleci.com/gh/DeepakParari/TestYourAPIs.svg?style=shield)](https://circleci.com/gh/DeepakParari/TestYourAPIs)
 
 # A simple framework to test REST API's
 
