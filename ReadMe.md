@@ -1,17 +1,22 @@
+
+
+[![CircleCI](https://app.circleci.com/pipelines/github/DeepakParari/TestYourAPIs.svg?style=svg)](https://app.circleci.com/pipelines/github/DeepakParari/TestYourAPIs)
+
 # A simple framework to test REST API's
 
 ## Framework elements
 + Rest Assured Library
 + Junit 4 ( Framework and Test runner )
 + Hamcrest (For managing asserts )
-+ Framework logging using Log4J
++ Framework logging using Log4J and JUnit RunListener
 + RestAssured Request-Response logging
++ Integrated with CircleCI
 
 ## How to run the tests
-PetTest class contains tests (Smoke Tests) to perform the CRUD operation on the /pet endpoint.
 
-+ You can run from the IDE by running the BaseTest class.
++ You can run from the IDE by running the BaseTest class. Mention the test classes to be run in the suite.
 + Using maven command mvn clean test (Optionally you can provide the profile using -P eg mvn clean test -Pdev).
++ Integrated with CircleCI + GitHub
 
 Outputs:
 + Surefire reports under /target/surefire-reports
@@ -21,22 +26,11 @@ Outputs:
 ## Components
 Helper Classes
 + ConfigFileReader - Reads value from properties file. Resource filtering is used to facilitate working with multiple environments. (Find properties file under /main/resources/env/)
-+ RequestLoader - Loads request body from the /test/resources/payloads folder.
 + SpecBuilder - Creates common request specification to be used by all tests.
-+ JSONHelper - Manipulate JSON request / Read value from response.
++ CommonListener - JUnit RunListener for real time execution status.
 
 ## Tests
 Test Package
 + BaseTest class for the setup.
-+ PetTest - CRUD tests.
-
-### Next Actions
-+ Integrate in the pipeline.
-+ Create POJO classes for setting up complex requests.
-+ Use DataProvider for data driving the tests.
-+ Create separate methods for CRUD operations and use it for creating functional tests.
-+ Use JUnit asserts.
-+ Allure reporting or similar.
-
-
++ Users, Posts, Comments classes for specific service tests. Refer: https://jsonplaceholder.typicode.com
 
