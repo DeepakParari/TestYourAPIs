@@ -4,8 +4,12 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pojos.Post;
 import services.PostsService;
 import services.UsersService;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.Matchers.equalTo;
 
@@ -52,5 +56,23 @@ public class Posts {
         PostsService.deletePost(1)
                 .then().assertThat()
                 .body(equalTo("{}"));
+    }
+
+    @Test
+    public void verify_If_user_is_able_to_list_posts_of_a_specific_user() {
+        //Arrange
+        userId = UsersService.getUserIdOfUser("Delphine");
+
+        //Act & Assert
+        List<Post> allPostsByUser = Arrays.asList(PostsService.getPostsOfUser(userId).getBody().as(Post[].class));
+        allPostsByUser.forEach(post -> Assert.assertEquals(post.getUserId(), userId));
+
+    }
+
+    @Test
+    public void verify_If_no_posts_are_retrieved_for_an_invalid_user() {
+
+        List<Post> allPostsByUser = Arrays.asList(PostsService.getPostsOfUser(123).getBody().as(Post[].class));
+        Assert.assertEquals("Posts exists for this user.", 0, allPostsByUser.size());
     }
 }

@@ -17,7 +17,8 @@ import static io.restassured.RestAssured.*;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         Users.class,
-        Posts.class
+        Posts.class,
+        Comments.class
 })
 
 public class BaseTest {
