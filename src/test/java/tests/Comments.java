@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RunWith(DataProviderRunner.class)
-public class Comments {
+public class Comments extends BaseTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Users.class);
     private int userId;

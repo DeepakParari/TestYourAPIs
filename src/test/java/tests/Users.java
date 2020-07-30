@@ -14,7 +14,7 @@ import services.UsersService;
 import static org.hamcrest.Matchers.greaterThan;
 
 @RunWith(DataProviderRunner.class)
-public class Users {
+public class Users extends BaseTest{
     private static final Logger LOGGER = LoggerFactory.getLogger(Users.class);
 
     @DataProvider

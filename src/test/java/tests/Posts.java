@@ -18,7 +18,7 @@ import java.util.List;
 import static org.hamcrest.Matchers.equalTo;
 
 @RunWith(DataProviderRunner.class)
-public class Posts {
+public class Posts extends BaseTest{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Users.class);
     private int userId;

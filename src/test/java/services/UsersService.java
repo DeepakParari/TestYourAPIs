@@ -1,7 +1,6 @@
 package services;
 
 import io.restassured.response.Response;
-import org.junit.Assert;
 import pojos.User;
 
 import java.util.Arrays;
