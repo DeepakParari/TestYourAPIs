@@ -52,6 +52,7 @@ import java.util.Properties;
             Object value = properties.get(propertyName);
 
             if (value == null) {
+                LOGGER.info("Property value null for the following key : " + propertyName);
                 return null;
             }
             return value.toString();

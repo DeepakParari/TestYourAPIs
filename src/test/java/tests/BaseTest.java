@@ -1,6 +1,8 @@
 package tests;
 
 import io.restassured.specification.RequestSpecification;
+import org.junit.Assume;
+import org.junit.AssumptionViolatedException;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -27,14 +29,24 @@ public class BaseTest {
     public static RequestSpecification requestSpec;
 
     @BeforeClass
-    public static void setUp() {
+    public static void setUp() throws Exception {
 
         LOGGER.info("Setting up.");
 
         enableLoggingOfRequestAndResponseIfValidationFails();
 
         //Get request specification from TestHelper class
-        requestSpec = setupRequestSpec();
+        try{
+            requestSpec = setupRequestSpec();
+            Assume.assumeNotNull(requestSpec);
+
+        }catch (Exception e){
+           if(e instanceof AssumptionViolatedException)
+               throw e;
+               LOGGER.error("Problem while setting up RequestSpecification", e);
+        }
+
+
     }
 
 }
