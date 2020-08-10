@@ -30,7 +30,7 @@ public class JSONHelper {
      * @param jsonObject Payload read from the file(JSON)
      * @param key JSON Path to be replaced
      * @param value Value to be replaced.
-     * @return
+     * @return jsonObject Payload after modification.
      */
     //TODO Make it generic enough to handle different data types for value.
     public Object setValueInJSON(Object jsonObject, String key, Double value) {
@@ -45,7 +45,6 @@ public class JSONHelper {
 
         } catch (Exception e) {
             LOGGER.error("Problem while setting the value in JSON ", e);
-            e.printStackTrace();
         }
         return jsonObject;
     }

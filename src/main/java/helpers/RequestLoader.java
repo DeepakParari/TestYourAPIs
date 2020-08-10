@@ -22,7 +22,7 @@ public class RequestLoader {
      * file cannot be read
      */
     public Object loadJson(String resource) {
-        Object result = null;
+        Object result;
         try (InputStream inputStream = this.getClass().getResourceAsStream(resource)) {
             result = MAPPER.readValue(inputStream, Object.class);
         } catch (IOException e) {

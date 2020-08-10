@@ -17,7 +17,7 @@ public class Geo { // POJO class that describes a user's geo location
     @JsonProperty("lng")
     private String lng;
     @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private final Map<String, Object> additionalProperties = new HashMap<>();
 
     @JsonProperty("lat")
     public String getLat() {

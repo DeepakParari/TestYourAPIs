@@ -29,7 +29,7 @@ public class BaseTest {
     public static RequestSpecification requestSpec;
 
     @BeforeClass
-    public static void setUp() throws Exception {
+    public static void setUp() {
 
         LOGGER.info("Setting up.");
 

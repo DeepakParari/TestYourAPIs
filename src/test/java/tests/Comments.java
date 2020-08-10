@@ -22,7 +22,6 @@ import java.util.List;
 public class Comments extends BaseTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Users.class);
-    private int userId;
     private Response allCommentsOnUserPostsResponse;
     private List<Comment> allCommentsOnUserPosts;
 
@@ -38,7 +37,7 @@ public class Comments extends BaseTest {
     public void verify_If_comments_of_an_user_have_valid_email_format(final String userName) {
 
         //Arrange
-        userId = UsersService.getUserIdOfUser(userName);
+        int userId = UsersService.getUserIdOfUser(userName);
         List<Post> allPostsByUser = Arrays.asList(PostsService.getPostsOfUser(userId).getBody().as(Post[].class));
         allPostsByUser.forEach(post -> {
             int postId = post.getId();

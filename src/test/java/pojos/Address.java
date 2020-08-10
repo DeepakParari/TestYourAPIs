@@ -26,7 +26,7 @@ public class Address { // POJO class that describes a user's address
     @JsonProperty("geo")
     private Geo geo;
     @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private final Map<String, Object> additionalProperties = new HashMap<>();
 
     @JsonProperty("street")
     public String getStreet() {

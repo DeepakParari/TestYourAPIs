@@ -20,7 +20,7 @@ public class Company { // POJO class that describes a user's company
     @JsonProperty("bs")
     private String bs;
     @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private final Map<String, Object> additionalProperties = new HashMap<>();
 
     @JsonProperty("name")
     public String getName() {

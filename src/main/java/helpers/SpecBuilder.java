@@ -4,7 +4,6 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.specification.RequestSpecification;
-import org.junit.Assume;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +22,7 @@ public class SpecBuilder {
      * @return RequestSpecification
      */
 
-    public static RequestSpecification setupRequestSpec() throws Exception{
+    public static RequestSpecification setupRequestSpec() {
         try {
             RequestSpecBuilder builder = new RequestSpecBuilder();
             PrintStream log = new PrintStream(new FileOutputStream("target/request-response.txt"));

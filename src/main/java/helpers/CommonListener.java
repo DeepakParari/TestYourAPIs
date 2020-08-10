@@ -9,11 +9,10 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 
-public class CommonListener extends RunListener{
+public class CommonListener extends RunListener {
     private static final Logger LOGGER = LoggerFactory.getLogger(CommonListener.class);
     //Start and End time of the tests
-    long startTime;
-    long endTime;
+    private long startTime;
 
     @Override
     public void testRunStarted(Description description) throws Exception {
@@ -26,23 +25,23 @@ public class CommonListener extends RunListener{
     @Override
     public void testRunFinished(Result result) throws Exception {
         //End time of the tests
-        endTime = new Date().getTime();
+        long endTime = new Date().getTime();
         //Print the below lines when all tests are finished.
         LOGGER.info("Tests finished! Number of test case: " + result.getRunCount());
-        long elapsedSeconds = (endTime-startTime)/1000;
-        LOGGER.info("Elapsed time of tests execution: " + elapsedSeconds +" seconds");
+        long elapsedSeconds = (endTime - startTime) / 1000;
+        LOGGER.info("Elapsed time of tests execution: " + elapsedSeconds + " seconds");
     }
 
     @Override
     public void testStarted(Description description) throws Exception {
         //Write the test name when it is started.
-        LOGGER.info( "Test : " + description.getMethodName() + " is starting...");
+        LOGGER.info("Test : " + description.getMethodName() + " is starting...");
     }
 
     @Override
     public void testFinished(Description description) throws Exception {
         //Write the test name when it is finished.
-        LOGGER.info( "Test : " + description.getMethodName() + " is finished...");
+        LOGGER.info("Test : " + description.getMethodName() + " is finished...");
     }
 
     @Override
@@ -52,11 +51,10 @@ public class CommonListener extends RunListener{
     }
 
     /**
-     *  Called when a test will not be run, generally because a test method is annotated with Ignore.
-     * */
-    public void testIgnored(Description description) throws java.lang.Exception
-    {
-        LOGGER.info("Execution of test case ignored : "+ description.getMethodName());
+     * Called when a test will not be run, generally because a test method is annotated with Ignore.
+     */
+    public void testIgnored(Description description) throws java.lang.Exception {
+        LOGGER.info("Execution of test case ignored : " + description.getMethodName());
     }
 
 }
