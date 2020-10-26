@@ -15,7 +15,7 @@
         <hamcrest.version>2.1</hamcrest.version>
         <hamcrest-core.version>2.1</hamcrest-core.version>
         <hamcrest-library.version>2.1</hamcrest-library.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <jackson-core.version>2.10.3</jackson-core.version>
         <jackson-databind.version>2.10.3</jackson-databind.version>
         <json-path.version>2.4.0</json-path.version>
